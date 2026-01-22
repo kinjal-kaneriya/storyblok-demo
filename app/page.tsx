@@ -6,7 +6,9 @@ const fetchHomePage = async () => {
   const client = getStoryblokApi();
   try {
     const response = await client.getStory(`home`, {
-      version: process.env.NODE_ENV === "development" || isEnabled ? "draft" : "published",
+      version: process.env.NODE_ENV === "development" || isEnabled 
+        ? "draft" 
+        : "published",
       resolve_relations: "recommended_tours.tours"
     });
     return response.data.story;

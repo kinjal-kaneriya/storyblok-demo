@@ -1,20 +1,27 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { draftMode } from "next/headers";
 
 export const generateStaticParams = async () => {
+  const {isEnabled} = await draftMode();
   const client = getStoryblokApi();
   const response = await client.getStories({
     content_type: "tour",
-    version: process.env.NODE_ENV === "development" ? "draft" : "published",
+    version: process.env.NODE_ENV === "development" || isEnabled
+      ? "draft"
+      : "published",
   });
 
   return response.data.stories.map((story) => ({ slug: story.slug }));
 };
 
 const fetchTourPage = async (slug: string) => {
+  const {isEnabled} = await draftMode();
     const client = getStoryblokApi();
     try {
         const response = await client.getStory(`tours/${slug}`, {
-            version: process.env.NODE_ENV === "development" ? "draft" : "published",
+            version: process.env.NODE_ENV === "development" || isEnabled
+              ? "draft"
+              : "published",
         });
         return response.data.story;
     }
