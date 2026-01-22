@@ -11,10 +11,10 @@ import { RecommendedTours } from "@/components/RecommendedTours";
 import Link from "next/link";
 
 const cachedFetch = (input: any, init?: any): Promise<Response> => {
-    return fetch(input, {
-      ...init,
-      cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    })
+  return fetch(input, {
+    ...init,
+    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
+  })
 }
 
 storyblokInit({
@@ -40,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StoryblokProvider>
-      <html lang="en">
-        <body className="bg-blue-50">
+    <html lang="en">
+      <body className="bg-blue-50">
+        <StoryblokProvider>
           <header>
             <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
               <Link href="/">Home</Link>
@@ -50,8 +50,8 @@ export default function RootLayout({
             </nav>
           </header>
           {children}
-        </body>
-      </html>
-    </StoryblokProvider>
+        </StoryblokProvider>
+      </body>
+    </html>
   );
 }

@@ -3,13 +3,14 @@ import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import { draftMode } from "next/headers";
 
 const fetchToursPage = async () => {
-  const {isEnabled} = await draftMode();
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   try {
     const response = await client.getStory(`tours`, {
       version: process.env.NODE_ENV === "development" || isEnabled
-        ? "draft" 
-       : "published",
+        ? "draft"
+        : "published",
+      resolve_relations: "recommended_tours.tours" 
     });
     return response.data.story;
   }
@@ -20,13 +21,13 @@ const fetchToursPage = async () => {
 }
 
 const fetchAllTours = async () => {
-  const {isEnabled} = await draftMode();
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   try {
     const response = await client.getStories({
       content_type: "tour",
-      version: process.env.NODE_ENV === "development" || isEnabled 
-        ? "draft" 
+      version: process.env.NODE_ENV === "development" || isEnabled
+        ? "draft"
         : "published",
     })
     return response.data.stories;
@@ -42,7 +43,10 @@ const ToursPage = async () => {
   const tours = await fetchAllTours();
   return (
     <div>
-      <StoryblokStory story={story} />
+      <StoryblokStory
+        bridgeOptions={{ resolveRelations: ["recommended_tours.tours"] }}
+        story={story}
+      />
       <div className="container grid md:grid-cols-3 gap-4 mx-auto px-4 py-16 w-full">
         {tours?.map((tour) => (
           <RecommendedTour key={tour.content._uid} story={tour} />

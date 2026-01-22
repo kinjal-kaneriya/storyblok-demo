@@ -31,7 +31,10 @@ const fetchTourPage = async (slug: string) => {
 const TourPage = async (props: any) => {
     const params = await props.params;
     const story = await fetchTourPage(params.slug);
-    return <StoryblokStory story={story} />
+    return <StoryblokStory
+        bridgeOptions={{ resolveRelations: ["recommended_tours.tours"] }}
+        story={story}
+    />
 
 }
 

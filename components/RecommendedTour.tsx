@@ -1,12 +1,15 @@
+import { storyblokEditable } from "@storyblok/react/rsc";
 import Link from "next/link";
 
 export const RecommendedTour = (props: any) => {
-    console.log(props);
     return (
-        <div className="bg-white rounded-sm shadow">
-            <img 
-            className="aspect-video object-cover w-full"
-            src={props.story.content.main_image.filename}/>
+        <div
+            {...storyblokEditable(props.story.content)}
+            className="bg-white rounded-sm shadow"
+        >
+            <img
+                className="aspect-video object-cover w-full"
+                src={props.story.content.main_image.filename} />
             <div className="p-8">
                 <div className="flex gap-4 justify-between text-lg font-bold">
                     <h3>{props.story.content.name}</h3>
