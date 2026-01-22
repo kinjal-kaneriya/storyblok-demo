@@ -1,10 +1,11 @@
-import { StoryblokComponent } from "@storyblok/react";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
 
 export const Page = (params: any) => {
-    console.log(params);
-    return <main>
-        {params.blok.blocks.map((blok: any) => (
-            <StoryblokComponent key={blok._uid} blok={blok} />
-        ))}
-    </main>
+    return (
+        <main {...storyblokEditable(params.blok)}>
+            {params.blok.blocks.map((blok: any) => (
+                <StoryblokComponent key={blok._uid} blok={blok} />
+            ))}
+        </main>
+    )
 };
