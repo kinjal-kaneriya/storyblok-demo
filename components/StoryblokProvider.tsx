@@ -9,19 +9,25 @@ import { Feature } from "./Feature";
 import { Testimonial } from "./Testimonial";
 import { RecommendedTours } from "./RecommendedTours";
 
-storyblokInit({
-    components: {
-        tour: Tour,
-        page: Page,
-        hero: Hero,
-        grid: Grid,
-        feature: Feature,
-        testimonial: Testimonial,
-        recommended_tours: RecommendedTours,
-    },
-    enableFallbackComponent: true,
-});
+interface StoryblokProviderProps extends PropsWithChildren {
+    isEnabled: boolean;
+}
 
-export const StoryblokProvider = ({ children }: PropsWithChildren) => {
+export const StoryblokProvider = ({ children, isEnabled }: StoryblokProviderProps) => {
+    if (isEnabled) {
+        storyblokInit({
+            components: {
+                tour: Tour,
+                page: Page,
+                hero: Hero,
+                grid: Grid,
+                feature: Feature,
+                testimonial: Testimonial,
+                recommended_tours: RecommendedTours,
+            },
+            enableFallbackComponent: true,
+        });
+    }
+
     return <>{children}</>
 }

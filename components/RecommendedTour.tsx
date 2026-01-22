@@ -1,6 +1,8 @@
+"use client";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import Link from "next/link";
 import Image from "next/image";
+import storyblokImageLoader from "@/storyblokImageLoader";
 
 export const RecommendedTour = (props: any) => {
     return (
@@ -10,6 +12,7 @@ export const RecommendedTour = (props: any) => {
         >
             <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
+                    loader={storyblokImageLoader}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     src={props.story.content.main_image.filename}
                     alt={props.story.content.main_image.alt || props.story.content.name}

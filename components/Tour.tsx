@@ -1,6 +1,8 @@
+"use client";
 import { renderRichText } from "@storyblok/react/rsc"
 import { storyblokEditable } from "@storyblok/react"
 import Image from "next/image"
+import storyblokImageLoader from "@/storyblokImageLoader"
 
 export const Tour = (props: any) => {
     return (
@@ -15,6 +17,7 @@ export const Tour = (props: any) => {
 
                 <div className="relative aspect-video mb-16 overflow-hidden rounded-3xl shadow-2xl shadow-blue-900/10 border border-white/20">
                     <Image
+                        loader={storyblokImageLoader}
                         className="object-cover"
                         src={props.blok.main_image.filename}
                         alt={props.blok.main_image.alt || props.blok.name}

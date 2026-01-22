@@ -19,10 +19,15 @@ export const metadata: Metadata = {
   description: "Explore the best walking and photography tours in Taiwan with our Storyblok-powered demo application.",
 };
 
+import { draftMode } from "next/headers";
+
 const cachedFetch = (input: any, init?: any): Promise<Response> => {
   return fetch(input, {
     ...init,
-    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
+    next: {
+      revalidate: 3600, // Revalidate every hour
+      tags: ['storyblok']
+    },
   })
 }
 
@@ -43,15 +48,17 @@ storyblokInit({
   }
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled } = await draftMode();
+
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} bg-slate-50 text-slate-900 antialiased`} suppressHydrationWarning>
-        <StoryblokProvider>
+        <StoryblokProvider isEnabled={isEnabled}>
           <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
             <nav className="container mx-auto px-4 h-20 flex items-center justify-between">
               <Link href="/" className="text-2xl font-black tracking-tighter text-blue-600 hover:text-blue-700 transition-colors">
