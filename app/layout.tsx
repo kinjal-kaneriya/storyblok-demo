@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import { StoryblokProvider } from "@/components/StoryblokProvider";
@@ -9,6 +11,13 @@ import { Feature } from "@/components/Feature";
 import { Testimonial } from "@/components/Testimonial";
 import { RecommendedTours } from "@/components/RecommendedTours";
 import Link from "next/link";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
+export const metadata: Metadata = {
+  title: "Storyblok Demo - Discover Taiwan Tours",
+  description: "Explore the best walking and photography tours in Taiwan with our Storyblok-powered demo application.",
+};
 
 const cachedFetch = (input: any, init?: any): Promise<Response> => {
   return fetch(input, {
@@ -41,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-blue-50">
+      <body className={`${inter.className} bg-blue-50`}>
         <StoryblokProvider>
           <header>
             <nav className="container mx-auto px-4 w-full py-8 flex justify-between">

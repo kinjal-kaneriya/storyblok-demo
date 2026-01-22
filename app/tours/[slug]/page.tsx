@@ -1,5 +1,25 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { Metadata } from "next";
 import { draftMode } from "next/headers";
+
+export async function generateMetadata(props: any): Promise<Metadata> {
+    const params = await props.params;
+    const story = await fetchTourPage(params.slug);
+
+    if (!story) {
+        return {
+            title: "Tour Not Found",
+        };
+    }
+
+    return {
+        title: `${story.content.name} - Taiwan Tours`,
+        description: story.content.introduction,
+        openGraph: {
+            images: [story.content.main_image.filename],
+        },
+    };
+}
 
 export const generateStaticParams = async () => {
     const client = getStoryblokApi();

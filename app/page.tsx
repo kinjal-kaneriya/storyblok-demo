@@ -1,13 +1,19 @@
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { Metadata } from "next";
 import { draftMode } from "next/headers";
 
+export const metadata: Metadata = {
+  title: "Home - Storyblok demo",
+  description: "Experience the ultimate Storyblok-powered travel demo.",
+};
+
 const fetchHomePage = async () => {
-  const {isEnabled} = await draftMode();
+  const { isEnabled } = await draftMode();
   const client = getStoryblokApi();
   try {
     const response = await client.getStory(`home`, {
-      version: process.env.NODE_ENV === "development" || isEnabled 
-        ? "draft" 
+      version: process.env.NODE_ENV === "development" || isEnabled
+        ? "draft"
         : "published",
       resolve_relations: "recommended_tours.tours"
     });
@@ -22,8 +28,8 @@ const fetchHomePage = async () => {
 const HomePage = async () => {
   const story = await fetchHomePage();
   return <StoryblokStory
-  bridgeOptions={{resolveRelations: ["recommended_tours.tours"]}}
-  story={story} />
+    bridgeOptions={{ resolveRelations: ["recommended_tours.tours"] }}
+    story={story} />
 };
 
 export default HomePage;
