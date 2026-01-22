@@ -5,12 +5,19 @@ export const RecommendedTours = (params: any) => {
     return (
         <section
             {...storyblokEditable(params.blok)}
-            className="container py-16 px-4 mx-auto w-full">
-            <h2 className="text-3xl md:text-4xl font-bold text-center">{params.blok.headline}</h2>
-            <div className="grid md:grid-cols-2 gap-8 mt-16">
-                {params.blok.tours.map((tour: any) => (
-                    <RecommendedTour key={tour.content._uid} story={tour} />
-                ))}
+            className="py-24 bg-slate-50"
+        >
+            <div className="container mx-auto px-4 w-full">
+                <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-16 tracking-tighter text-center">
+                    {params.blok.headline}
+                </h2>
+                <div className="flex flex-wrap justify-center gap-8">
+                    {params.blok.tours.map((tour: any) => (
+                        <div key={tour.content._uid} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] max-w-[400px]">
+                            <RecommendedTour story={tour} />
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     )

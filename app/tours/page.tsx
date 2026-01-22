@@ -48,15 +48,22 @@ const ToursPage = async () => {
   const story = await fetchToursPage();
   const tours = await fetchAllTours();
   return (
-    <div>
+    <div className="pt-20">
       <StoryblokStory
         bridgeOptions={{ resolveRelations: ["recommended_tours.tours"] }}
         story={story}
       />
-      <div className="container grid md:grid-cols-3 gap-4 mx-auto px-4 py-16 w-full">
-        {tours?.map((tour) => (
-          <RecommendedTour key={tour.content._uid} story={tour} />
-        ))}
+      <div className="container mx-auto px-4 py-24">
+        {!story && (
+          <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-16 tracking-tighter text-center">
+            Our Premium Tours
+          </h1>
+        )}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {tours?.map((tour) => (
+            <RecommendedTour key={tour.content._uid} story={tour} />
+          ))}
+        </div>
       </div>
     </div>
   )

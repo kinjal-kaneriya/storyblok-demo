@@ -49,16 +49,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-blue-50`}>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`${inter.className} bg-slate-50 text-slate-900 antialiased`} suppressHydrationWarning>
         <StoryblokProvider>
-          <header>
-            <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
-              <Link href="/">Home</Link>
-              <Link href="/tours">Tours</Link>
+          <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+            <nav className="container mx-auto px-4 h-20 flex items-center justify-between">
+              <Link href="/" className="text-2xl font-black tracking-tighter text-blue-600 hover:text-blue-700 transition-colors">
+                TAIWAN<span className="text-slate-400">TOURS</span>
+              </Link>
+              <div className="flex gap-8 font-medium">
+                <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+                <Link href="/tours" className="hover:text-blue-600 transition-colors">All Tours</Link>
+              </div>
             </nav>
           </header>
-          {children}
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <footer className="bg-slate-900 text-slate-400 py-12 mt-20">
+            <div className="container mx-auto px-4 text-center">
+              <p className="text-sm">© {new Date().getFullYear()} Taiwan Tours Demo. Built with Next.js and Storyblok.</p>
+            </div>
+          </footer>
         </StoryblokProvider>
       </body>
     </html>
