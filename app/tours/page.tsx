@@ -60,8 +60,8 @@ const ToursPage = async () => {
           </h1>
         )}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tours?.map((tour) => (
-            <RecommendedTour key={tour.content._uid} story={tour} />
+          {tours?.map((tour, index) => (
+            <RecommendedTour key={tour.content._uid} story={tour} priority={index === 0} />
           ))}
         </div>
       </div>

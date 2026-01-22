@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    loader: 'custom',
+    loaderFile: './storyblokImageLoader.ts',
     remotePatterns: [
       {
         protocol: 'https',
@@ -10,6 +12,9 @@ const nextConfig: NextConfig = {
     ],
   },
   compress: true,
+  experimental: {
+    optimizePackageImports: ['@storyblok/react'],
+  },
 };
 
 export default nextConfig;

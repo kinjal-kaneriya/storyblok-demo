@@ -12,9 +12,9 @@ export const RecommendedTours = (params: any) => {
                     {params.blok.headline}
                 </h2>
                 <div className="flex flex-wrap justify-center gap-8">
-                    {params.blok.tours.map((tour: any) => (
+                    {params.blok.tours.map((tour: any, index: number) => (
                         <div key={tour.content._uid} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] max-w-[400px]">
-                            <RecommendedTour story={tour} />
+                            <RecommendedTour story={tour} priority={index === 0} />
                         </div>
                     ))}
                 </div>
