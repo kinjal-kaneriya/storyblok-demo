@@ -1,6 +1,6 @@
 "use client";
 import type { PropsWithChildren } from "react";
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { storyblokInit } from "@storyblok/react/rsc";
 import { Tour } from "./Tour";
 import { Page } from "./Page";
 import { Hero } from "./Hero";
@@ -10,8 +10,6 @@ import { Testimonial } from "./Testimonial";
 import { RecommendedTours } from "./RecommendedTours";
 
 storyblokInit({
-    accessToken: process.env.STORYBLOK_TOKEN,
-    use: [apiPlugin],
     components: {
         tour: Tour,
         page: Page,
