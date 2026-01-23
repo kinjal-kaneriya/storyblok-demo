@@ -3,13 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { storyblokInit, apiPlugin } from '@storyblok/react/rsc'
 import { StoryblokProvider } from '@/components/StoryblokProvider'
-import { Page } from '@/components/Page'
-import { Tour } from '@/components/Tour'
-import { Hero } from '@/components/Hero'
-import { Grid } from '@/components/Grid'
-import { Feature } from '@/components/Feature'
-import { Testimonial } from '@/components/Testimonial'
-import { RecommendedTours } from '@/components/RecommendedTours'
+import { storyblokComponents } from '@/components/storyblok'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
@@ -38,15 +32,7 @@ storyblokInit({
   apiOptions: {
     fetch: cachedFetch,
   },
-  components: {
-    tour: Tour,
-    page: Page,
-    hero: Hero,
-    grid: Grid,
-    feature: Feature,
-    testimonial: Testimonial,
-    recommended_tours: RecommendedTours,
-  },
+  components: storyblokComponents,
 })
 
 export default async function RootLayout({
@@ -58,6 +44,9 @@ export default async function RootLayout({
 
   return (
     <html lang='en' className='scroll-smooth' suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://a.storyblok.com" />
+      </head>
       <body
         className={`${inter.className} bg-slate-50 text-slate-900 antialiased`}
         suppressHydrationWarning

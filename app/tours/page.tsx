@@ -46,8 +46,11 @@ const fetchAllTours = async () => {
 }
 
 const ToursPage = async () => {
-  const story = await fetchToursPage()
-  const tours = await fetchAllTours()
+  const [story, tours] = await Promise.all([
+    fetchToursPage(),
+    fetchAllTours()
+  ])
+
   return (
     <div className='pt-20'>
       <StoryblokStory
