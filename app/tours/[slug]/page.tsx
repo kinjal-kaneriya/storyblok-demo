@@ -17,7 +17,9 @@ export async function generateMetadata(props: any): Promise<Metadata> {
     title: `${story.content?.name || 'Tour'} - Taiwan Tours`,
     description: story.content?.introduction,
     openGraph: {
-      images: story.content?.main_image?.filename ? [story.content.main_image.filename] : [],
+      images: story.content?.main_image?.filename
+        ? [story.content.main_image.filename]
+        : [],
     },
   }
 }
@@ -42,7 +44,10 @@ const fetchTourPage = async (slug: string) => {
   const client = getStoryblokApi()
 
   try {
-    const version = process.env.NODE_ENV === 'development' || isEnabled ? 'draft' : 'published'
+    const version =
+      process.env.NODE_ENV === 'development' || isEnabled
+        ? 'draft'
+        : 'published'
 
     const response = await client.getStory(`tours/${slug}`, {
       version,
@@ -54,12 +59,18 @@ const fetchTourPage = async (slug: string) => {
     }
   } catch (err: any) {
     if (err?.status !== 404) {
-      console.error(`[TourPage] Storyblok fetch error for tours/${slug}:`, err.message)
+      console.error(
+        `[TourPage] Storyblok fetch error for tours/${slug}:`,
+        err.message,
+      )
     }
   }
 
   try {
-    const version = process.env.NODE_ENV === 'development' || isEnabled ? 'draft' : 'published'
+    const version =
+      process.env.NODE_ENV === 'development' || isEnabled
+        ? 'draft'
+        : 'published'
     const fallbackResponse = await client.getStories({
       by_slugs: `*/${slug},${slug}`,
       content_type: 'tour',

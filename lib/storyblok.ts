@@ -5,6 +5,8 @@ import { Grid } from '@/components/Grid'
 import { Feature } from '@/components/Feature'
 import { Testimonial } from '@/components/Testimonial'
 import { RecommendedTours } from '@/components/RecommendedTours'
+import { About } from '@/components/About'
+import { ContactForm } from '@/components/ContactForm'
 import dynamic from 'next/dynamic'
 
 export const storyblokComponents = {
@@ -15,6 +17,9 @@ export const storyblokComponents = {
     feature: Feature,
     testimonial: Testimonial,
     recommended_tours: RecommendedTours,
+    about: About,
+    contact_form: ContactForm,
+    contact: ContactForm,
 }
 
 export const dynamicStoryblokComponents = {
@@ -25,4 +30,7 @@ export const dynamicStoryblokComponents = {
     feature: dynamic(() => import('@/components/Feature').then((mod) => mod.Feature)),
     testimonial: dynamic(() => import('@/components/Testimonial').then((mod) => mod.Testimonial)),
     recommended_tours: dynamic(() => import('@/components/RecommendedTours').then((mod) => mod.RecommendedTours)),
+    about: dynamic(() => import('@/components/About').then((mod) => mod.About)),
+    contact_form: dynamic(() => import('@/components/ContactForm').then((mod) => mod.ContactForm)),
+    contact: dynamic(() => import('@/components/ContactForm').then((mod) => mod.ContactForm)),
 }
