@@ -5,7 +5,6 @@ import { StoryblokProvider } from '@/components/StoryblokProvider'
 import { storyblokComponents } from '@/lib/storyblok'
 import Link from 'next/link'
 
-// Use a system font stack to avoid build errors related to Google Fonts fetching in restricted environments
 const inter = { className: 'font-sans' }
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ const cachedFetch = (input: any, init?: any): Promise<Response> => {
   return fetch(input, {
     ...init,
     next: {
-      revalidate: 3600, // Revalidate every hour
+      revalidate: 3600,
       tags: ['storyblok'],
     },
   })
@@ -45,7 +44,7 @@ export default async function RootLayout({
   return (
     <html lang='en' className='scroll-smooth' suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://a.storyblok.com" />
+        <link rel='preconnect' href='https://a.storyblok.com' />
       </head>
       <body
         className={`${inter.className} bg-slate-50 text-slate-900 antialiased`}

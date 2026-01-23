@@ -46,10 +46,7 @@ const fetchAllTours = async () => {
 }
 
 const ToursPage = async () => {
-  const [story, tours] = await Promise.all([
-    fetchToursPage(),
-    fetchAllTours()
-  ])
+  const [story, tours] = await Promise.all([fetchToursPage(), fetchAllTours()])
 
   return (
     <div className='pt-20'>

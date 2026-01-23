@@ -7,7 +7,6 @@ import { Testimonial } from '@/components/Testimonial'
 import { RecommendedTours } from '@/components/RecommendedTours'
 import dynamic from 'next/dynamic'
 
-// Static mapping for Server-Side Rendering (RSC)
 export const storyblokComponents = {
     tour: Tour,
     page: Page,
@@ -18,8 +17,6 @@ export const storyblokComponents = {
     recommended_tours: RecommendedTours,
 }
 
-// Dynamic mapping for the Storyblok Bridge (Client-side)
-// This ensures that Storyblok-related JS is only loaded when needed, keeping TBT low.
 export const dynamicStoryblokComponents = {
     tour: dynamic(() => import('@/components/Tour').then((mod) => mod.Tour)),
     page: dynamic(() => import('@/components/Page').then((mod) => mod.Page)),
