@@ -1,20 +1,20 @@
 "use client";
 import type { PropsWithChildren } from "react";
-import { storyblokInit } from "@storyblok/react/rsc";
-import { storyblokComponents } from "./storyblok";
+import dynamic from "next/dynamic";
+
+const StoryblokBridge = dynamic(() => import("./StoryblokBridge"), {
+    ssr: false,
+});
 
 interface StoryblokProviderProps extends PropsWithChildren {
     isEnabled: boolean;
 }
 
 export const StoryblokProvider = ({ children, isEnabled }: StoryblokProviderProps) => {
-    // Only initialize the bridge and components locally when draft mode is enabled
-    if (isEnabled) {
-        storyblokInit({
-            components: storyblokComponents,
-            enableFallbackComponent: true,
-        });
-    }
-
-    return <>{children}</>
+    return (
+        <>
+            {isEnabled && <StoryblokBridge />}
+            {children}
+        </>
+    );
 }

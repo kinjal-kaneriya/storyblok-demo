@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { storyblokInit, apiPlugin } from '@storyblok/react/rsc'
 import { StoryblokProvider } from '@/components/StoryblokProvider'
 import { storyblokComponents } from '@/components/storyblok'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+// Use a system font stack to avoid build errors related to Google Fonts fetching in restricted environments
+const inter = { className: 'font-sans' }
 
 export const metadata: Metadata = {
   title: 'Storyblok Demo - Discover Taiwan Tours',
