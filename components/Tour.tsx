@@ -9,7 +9,7 @@ export const Tour = (props: any) => {
             className="pt-32 pb-24"
         >
             <div className="container mx-auto px-4 max-w-4xl">
-                <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter">
+                <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-8 tracking-tighter text-center">
                     {props.blok.name}
                 </h1>
 
