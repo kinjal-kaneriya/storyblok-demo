@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     loader: 'custom',
-    loaderFile: './storyblokImageLoader.ts',
+    loaderFile: './lib/storyblokImageLoader.ts',
     remotePatterns: [
       {
         protocol: 'https',

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { storyblokInit, apiPlugin } from '@storyblok/react/rsc'
 import { StoryblokProvider } from '@/components/StoryblokProvider'
-import { storyblokComponents } from '@/components/storyblok'
+import { storyblokComponents } from '@/lib/storyblok'
 import Link from 'next/link'
 
 // Use a system font stack to avoid build errors related to Google Fonts fetching in restricted environments
